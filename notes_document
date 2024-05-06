@@ -1,3 +1,55 @@
 192.168.65.10, 10.50.33.177 (WINDOWS)
 192.168.65.20, 10.50.38.49 (LINUX)
 
+
+                                                                        DAY 1
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+type() function
+    will print the data type declared in parenthesis
+    print(type(3))
+
+list() function (mutable)
+  displays the list of a variable declared inside parenthesis
+[0]  being first element
+[-1] being last element, -2 second to last, so on
+
+tuple() function (immutable)
+  () instead of [] (list)
+
+changing a variable
+usmc = "marines"
+  usmc = list(usmc)
+del usmc[0]  (will print "arines")
+usmc.append('321')  (will add 321 to the end of "arines")
+
+brace expansion
+  print('{} {}'.format(var1,var2))    prints var1 and var2
+
+split() function
+  will split strings at declared string inside parenthesis
+  gives a list, can index from split() function
+  'user:password'.split(:)
+    will give ['user' 'password']
+
+email = 'last@domain.com'
+hello = []
+a = email.split('@')[0]
+b = (email.split('@')[1]).split('.')
+hello.append(a)
+hello.append(b[0])
+hello.append(b[1])
+
+print(hello)
+
+####prints ['last','domain','com']####
+
+print(('.'.join(email.split('@'))).split('.'))
+
+####also prints ['last','domain','com']####
+
+join() function
+  
+
+
+REPL - the 3 gators when you do the python command thingy
