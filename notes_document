@@ -35,18 +35,16 @@ split() function
 email = 'last@domain.com'
 hello = []
 a = email.split('@')[0]
-b = (email.split('@')[1]).split('.')
+b = (email.split('@')[1]).split('.')                  #### prints ['last','domain','com'] ####
 hello.append(a)
 hello.append(b[0])
 hello.append(b[1])
 
 print(hello)
 
-####prints ['last','domain','com']####
 
-print(('.'.join(email.split('@'))).split('.'))
+print(('.'.join(email.split('@'))).split('.'))      #### also prints ['last','domain','com'] ####
 
-####also prints ['last','domain','com']####
 
 join() function
   
@@ -94,3 +92,54 @@ ord('a') - returns the number associated with the character in ASCII
 dictionaries = {}
 romanNumerals = {'I':1, 'V':5, 'X':10, 'L':50}
 romanNumerals['V'] - will print 5
+
+
+####OPENING A FILE####
+with open("test.txt") as fp:
+    pass
+
+write(string)
+Writes the contents of string to the file
+
+writelines(lines)
+Write all lines in a file including newline '\n' into a list
+
+with open ("test.txt", 'w') as fp:
+  fp.write('First line\n')                                    #### ADDS TEXT TO TEXT DOCUMENT 'TEST.TXT' ####
+  lines = ['Second line\n', 'Third line\n']
+  fp.writelines(lines)
+
+with open("test.txt) as fp:
+  fp.read()                                                  #### READ THE CONENTS OF TEST.TXT ####
+
+
+f = open('school_prompt.txt', 'r')
+beginning_chars = f.read(30)                                #### READS FIRST 30 CHARACTERS IN SCHOOL_PROMPT.TXT ####
+print(beginning_chars)
+
+num_words = 0
+fileref = "emotion_words.txt"
+
+with open(fileref, 'r') as file:
+    for line in file:                                      #### FINDS TOTAL NUMBER OF WORDS IN FILE AND ASSIGNS TO
+        num_words += len(line.split())                          VARIABLE NUM_WORDS ####
+
+
+num = 0
+with open('travel_plans.txt') as fp:                      #### FINDS TOTAL NUMBER OF CHARACTERS IN FILE AND ASSIGNS TO
+    num = (len(fp.read()))                                     VARIABLE NUM ####
+
+
+emotions=[]
+op = open('emotion_words.txt','a')                        #### TAKES FIRST WORDS IN EVERY LINE IN EMOTION_WORDS.TXT
+for i in op:                                                   AND PUTS IT IN A LIST ####
+    k = i.split()
+    emotions.append(k[0])
+
+
+
+
+
+
+
+
