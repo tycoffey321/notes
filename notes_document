@@ -137,6 +137,196 @@ for i in op:                                                   AND PUTS IT IN A 
     emotions.append(k[0])
 
 
+                                #### PRACTICE EXAM QUESTIONS AND ANSWERS ####
+
+
+
+def q1(floatstr)
+ Given the floatstr, which is a comma separated string of
+  7     floats, return a list with each of the floats in the 
+  8     argument as elements in the list.
+  9     '''
+ 10     floats_list = [float(num) for num in floatstr.split(',')]
+ 11     return floats_list
+ 12     pass
+
+
+14 def q2(*args):
+ 15     '''
+ 16     TLO: 112-SCRPY006, LSA 3
+ 17     TLO: 112-SCRPY007, LSA 4
+ 18     Given the variable length argument list, return the average
+ 19     of all the arguments as a float
+ 20     '''
+ 21     total = sum(args)
+ 22     count = len(args)
+ 23     if count > 0:
+ 24         avg = total / count
+ 25         return avg
+ 26     else:
+ 27         return 0.0
+ 28     pass
+ 29     
+
+
+ 30 def q3(lst,n):
+ 31     '''
+ 32     TLO: 112-SCRPY004, LSA 3
+ 33     Given a list (lst) and a number of items (n), return a new 
+ 34     list containing the last n entries in lst.
+ 35     '''
+ 36     return lst[-n:]
+ 37     pass
+
+
+    
+def q4(strng):
+    '''
+    Given an input string, return a list containing the ordinal numbers of 
+    each character in the string in the order found in the input string.
+    '''
+    return [ord(x) for x in list(strng)]
+    # return list(map(ord,strng))
+
+def q5(strng):
+    '''
+    Given an input string, return a tuple with each element in the tuple
+    containing a single word from the input string in order.
+    '''
+    return tuple(strng.split())
+
+def q6(): *************************************
+    '''
+    Given an input string similar to the below, craft a regular expression  
+    pattern to match and extract the date, time, and temperature in groups  
+    and return this pattern. Samples given below.
+    Date: 12/31/1999 Time: 11:59 p.m. Temperature: 44 F
+    Date: 01/01/2000 Time: 12:01 a.m. Temperature: 5.2 C
+    '''
+    #pat = r"Date:\s+([0-9]+/[0-9]+/[0-9]+)\s+Time:\s+([0-9]+:[0-9]+\s[a|p]\.m\.)\s+Temperature:\s+([0-9.]+\s[KkFfCc])"
+    pat = r"Date: (\d+/\d+/\d+) Time: (\d+:\d+ .\.m\.) Temperature: ([\d\.]+ [FfCc])"
+    return pat
+
+
+
+
+ 59 def q6(catalog, order):
+ 60     '''
+ 61     TLO: 112-SCRPY007, LSA 2
+ 62     Given a dictionary (catalog) whose keys are product names and values are product
+ 63     prices per unit and a list of tuples (order) of product names and quantities,
+ 64     compute and return the total value of the order.
+ 65 
+ 66     Example catalog:
+ 67     {
+ 68         'AMD Ryzen 5 5600X': 289.99,
+ 69         'Intel Core i9-9900K': 363.50,
+ 70         'AMD Ryzen 9 5900X': 569.99
+ 71     }
+ 72 
+ 73     Example order:
+ 74     [
+ 75         ('AMD Ryzen 5 5600X', 5), 
+ 76         ('Intel Core i9-9900K', 3)
+ 77     ]
+ 78 
+ 79     Example result:
+ 80     2540.45 
+ 81 
+ 82     How the above result was computed:
+ 83     (289.99 * 5) + (363.50 * 3)
+ 84     '''
+ 85     total = 0
+ 86     for product, quantity in order:
+ 87         if product in catalog:
+ 88             total += catalog[product] * quantity
+ 89         else:
+ 90             print(f"Product '{product}' not found in catalog.")
+ 91     return total
+ 92 
+ 93     pass
+
+
+
+
+def q7(filename):
+    '''
+    Given a filename, open the file and return the length of the first line 
+    in the file excluding the line terminator.
+    '''
+    with open(filename) as fp:
+        return len(fp.readline()) - 1 #Line terminator
+    # return len(fp.readline()) - 1 if line[-1] == '\n' else 0
+
+def q8(filename,lst):
+    '''
+    Given a filename and a list, write each entry from the list to the file
+    on separate lines until a case-insensitive entry of "stop" is found in 
+    the list. If "stop" is not found in the list, write the entire list to 
+    the file on separate lines.
+    '''
+    #'''
+    with open(filename, 'w') as fp:
+        for item in lst:
+            if item.lower() == 'stop':
+                break
+            fp.write('{}\n'.format(item))
+    #'''
+
+def q9(miltime):
+    '''
+    Given the military time in the argument miltime, return a string 
+    containing the greeting of the day.
+    0300-1159 "Good Morning"
+    1200-1559 "Good Afternoon"
+    1600-2059 "Good Evening"
+    2100-0259 "Good Night"
+    '''
+    if miltime >= 301 and miltime < 1200:
+        return "Good Morning"
+    elif miltime >= 1200 and miltime < 1600:
+        return "Good Afternoon"
+    elif miltime >= 1600 and miltime < 2100:
+        return "Good Evening"
+    elif miltime >= 2100 or miltime < 300:
+        return "Good Night"
+
+    #if 300 <= miltime <= 1159:
+    #   return 'Good Morning'
+    #if 1200 <= miltime <= 1559:
+    #   return 'Good Afternoon'
+    #if 1600 <= miltime <= 2059:
+    #   return 'Good Evening'
+    #return 'Good Night'
+    
+def q10(numlist):
+    '''
+    Given the argument numlist as a list of numbers, return True if all 
+    numbers in the list are NOT negative. If any numbers in the list are
+    negative, return False.
+    '''
+    for i in numlist:
+        if i < 0:
+            return False
+    return True
+    # return all(map(lambda x: x >= 0, numlist))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
