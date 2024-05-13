@@ -367,6 +367,38 @@ mkdir someting{11,22,33,44}
   makes 4 directories, something11 something22 something33 something44
 
 
+mkdir 11{23,34,45,56} - makes 4 directories, 1123 1134 1145 1156
+
+mkdir 1123
+cd 1123
+touch {1,2,3,4,5,6~,7~,8~,9~}.txt - makes 9 documents in directory 1123
+
+find ~/1123 -name *.txt - finds all files in home/1123 that end in .txt
+
+find ~/1123 -name *.txt | grep -v '~' - finds all files in home/1123 that end in .txt and omits files containing
+                                        the ~ character
+
+find $HOME/1123 -type f -name "*.txt" ! -name "*~*" -exec cp {} $HOME/CUT \; - copies 1123 that end in .txt with no ~
+                                                                               and copies it to /CUT directory
+
+find /var -empty -printf '%i %f\n' - finds all empty files/directories in /var and prints out only the filename and
+                                     the inode number separated by newlines
+
+find / -inum 4026532575 -printf '%i %f\n' - finds all files with inode 4026532575 and print only the filename to 
+                                            the screen
+
+cut -d: -f1 passwd - gives field 1 of passwd
+cut -d: -f1- -s passwd - everything without a colon?
+cut -d: -f2-4 passwd - gives fields 2 - 4 of passwd 
+
+ls -p $HOME/CUT | grep -v '/$' | grep -E '\..+$' | cut -d '/' -f 2 > $HOME/CUT/names
+
+
+    Using only the ls -l and cut Commands, write a BASH script that shows all filenames with extensions ie: 1.txt, etc., but no directories, in $HOME/CUT.
+    Write those to a text file called names in $HOME/CUT directory.
+    Omit the names filename from your output.
+
+
 
 
 
