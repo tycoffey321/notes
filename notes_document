@@ -312,9 +312,66 @@ def q10(numlist):
     # return all(map(lambda x: x >= 0, numlist))
 
 
+===================================================================== BASH =========================================================================
+touch -t yymmddhhmm.ss 
+  change modification time
+mkdir -p
+  creates parent directory
+umask
+  default permissions
+rm -rf
+  remove recursively forcefully
+ls ~/*.log
+  finds everything .log in the home directory
+locate
+  find files by name
+find           (-iname -name -inum -size -gid -uid -maxdepth)
+  -maxdepth - how deep itll go into directories
+  -inum - inode number
+  search or files in a directory hierarchy
+  find / -type s -exec echo {} 2>/dev/null \; | grep domain*
+        some trash idk
+
+
+time = days
+  a - accessed
+  c - changed
+  m - modified
+
+find -cmin -30
+finds everything changed in the last 30 minutes
+
+
+find /var/log/ -iname *.log -exec ls -al {} 2>/dev/null \;
+  finds .log files in /var/log then executes ls -al on everything found
+
+find [path] [arguments] -exec [command] {} \;
+find [path] [arguments] -exec [command] {} +
+
+\; - for each found result, the command is executed
++ - for every result of the find command, the command is executed only once
+
+find . -maxdepth 0 -type d
+  finds directories in your current working location
+number indicated how many directories deep it will go
+
+grep
+egrep
+
+grep -v 
+  inverted search (find everything but this)
+cat /etc/passwd | grep /bin/bash
+  finds who gets a shell
+
+mkdir someting{11,22,33,44}
+  makes 4 directories, something11 something22 something33 something44
 
 
 
+
+
+
+  
 
 
 
