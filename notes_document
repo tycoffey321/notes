@@ -444,11 +444,28 @@ if [[ 41 == 42 ]]; then
 else
   echo "41 is not 42";
 fi
+
+-e expression for multiple sed patterns
+S substitution start pattern
+g global (lowercase)
+d (lowercase) deleted
+$ end of line
+
+sed -e 's/chicken/hamburger/g' -e 's/pepperoni/sausage/' pizza.txt
+(everywhere theres chicken replace with hamburger)
+(replace the first instance of pepperoniand replace it with sausage(no /g))
   
 
+#### DECLARING A VARIABLE AND PRINTS IT ####
+#### COMMAND SUBSTITUTION ####
 
+A = $(cat /etc/passwd)
+echo $A
 
-
+A = $(find /usr/bin -name passwd)
+echo $A
+echo md5sum $A
+echo file $A
 
 
 
