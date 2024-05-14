@@ -400,11 +400,51 @@ ls -p $HOME/CUT | grep -v '/$' | grep -E '\..+$' | cut -d '/' -f 2 > $HOME/CUT/n
 
 
 
+tail /etc/passwd | awk -F: '{print $1}'
+      prints out the first column of /etc/passwd (whatever after the -F is the delimeter)
+
+awk -F: '{print $1,$3,$4}
+  [prints first third and fourth
+
+'{print $NF}' - prints the last field
 
 
+sort 
+  sorts
+-n - numerically
+-u - uniquely
+-nr - numerically reversed
 
+ps aux | sort -k 1 
+  -k - columns (column 1 in previous example)
+
+grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" StoryHiddenIPs | sort | uniq -c | sort -rn
+  grabs IP addresses in StoryHiddenIPs and sorts them uniquely by number of times they appear
+
+awk -F: '$3 >= 4 && $3 != 0 && $7 == "/bin/bash" {print $1}' "$HOME/passwd" > "$HOME/SED/names.txt"
+  shows users in passwd with uid greater than or equal to 4 and default shell as /bin/bash and writes it to /names.txt
+
+### EXAMPLE IF BRANCHING IN BASH ###
+
+#!/bin/bash
+if [[ -f /etc/passwd]]; then
+  echo "/etc/passwd file exists"
+elif [[ ! -f /etc/passwd]]; then
+  echo "/etc/passwd file doesnt exist"
+fi
+
+if [[ 3129 == $((15645/5)) ]]; then
+  echo "math"
+elif [[ 3129 != $((15645/5)) ]]; then
+  echo "trash"
+fi
+
+if [[ 41 == 42 ]]; then
+  echo "41 is 42";
+else
+  echo "41 is not 42";
+fi
   
-
 
 
 
