@@ -122,5 +122,32 @@ function q1()
   find "$dirpath" -type f -atime -1 -print | sort
 }
 
+Read the file specified by fname and perform an action based on the contents of the file:
+
+    If contents are 0 to 9, print "single digit" to standard output.
+    If contents are 10 to 99, print "double digit" to standard output.
+    If contents are 100 to 999, print "triple digit" to standard output.
+    Otherwise, print "Error" to standard output.
+
+function q1() 
+{
+  #Valid Variables are:
+  fname=$1
+  wtfishappening=$(<"$fname")
+  if [[ "$wtfishappening" =~ ^[0-9]+$ ]]; then
+    if [ "$wtfishappening" -ge 0 ] && [ "$wtfishappening" -le 9 ]; then
+      echo "single digit"
+    elif [ "$wtfishappening" -ge 10 ] && [ "$wtfishappening" -le 99 ]; then
+      echo "double digit"
+    elif [ "$wtfishappening" -ge 100 ] && [ "$wtfishappening" -le 999 ]; then
+      echo "triple digit"
+    else
+      echo "Error"
+    fi
+  else
+    echo "Error"
+  fi
+}
+
 
 
