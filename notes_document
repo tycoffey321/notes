@@ -468,6 +468,25 @@ echo md5sum $A
 echo file $A
 
 
+function q1() 
+{
+  # Valid Variables are:
+  fname=$1
+  content=$(<"$fname")
+  if [[ "$content" =~ ^[0-9]+$ ]]; then
+    if [ "$content" -ge 0 ] && [ "$content" -le 9 ]; then
+      echo "single digit"
+    elif [ "$content" -ge 10 ] && [ "$content" -le 99 ]; then
+      echo "double digit"
+    elif [ "$content" -ge 100 ] && [ "$content" -le 999 ]; then
+      echo "triple digit"
+    else
+      echo "Error"
+    fi
+  else
+    echo "Error"
+  fi
+}
 
 
 
