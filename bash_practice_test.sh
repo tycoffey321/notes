@@ -87,7 +87,7 @@ function q1()
   timestamp="${2}1730"
   touch -t "$timestamp" "$1"
 }
-#is this proper use of the filedate variable
+
 
 Copy all lines from the file specified by src variable to the file specified by dst variable which DO NOT contain the text specified by match variable.
 
