@@ -151,3 +151,21 @@ function q1()
 
 
 
+
+
+
+
+
+
+test no 2
+
+function q1()
+{
+  #Valid Variables are:
+  logs=$1
+  archive=$2
+  tar -czf "$archive" -C "$logs" -- *.log
+
+}
+
+
