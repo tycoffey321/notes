@@ -76,14 +76,14 @@ $array | %{Get-Alias $_}
 /> 1..5 | ForEach-Object {$_+1}
 
 
+"elements provided on the pipeline"
+function cool-printer{process{$_}}
+1,2,3,4,5 | cool-printer
 
 
 
-
-
-
-
-
+get-content
+add-content
 
 
 
