@@ -98,19 +98,58 @@ function q1($var2,$var3,$var4,$var5) {
        number of angles. An impossible angle is one that
        is zero degrees (or less) or 360 degree (or more).
        #>
+function q1($var2, $var3, $var4, $var5) {
+    $totalSum = $var2 + $var3 + $var4 + $var5
+
+    if ($totalSum -gt 0 -and $totalSum -lt 360) {
+        $missingAngle = 360 - $totalSum
+        return $missingAngle
+    } else {
+        return -1
+    }
+}
+
+
 }
 function q2($arr,$key) {
     <# Search the 2 dimensional array for the first occurance
       of key at column index 0 and return the value at column
       index 2 of the same row. Return -1 if the key is not found.
     #>
+    function q2($arr, $key) {
+    foreach ($row in $arr) {
+        if ($row[0] -eq $key) {
+            return $row[2]
+        }
+    }
+    return -1
+}
+
 }
 function q3 {
     <# In a loop, prompt the user to enter a string until
        the user enters an empty string (length of 0) to
        stop. Return the string with the maximum
        length that the user entered."
+       
 #>
+function q3 {
+    $maxString = ""
+
+    while ($true) {
+        $inputString = Read-Host "Enter a string (press Enter to stop):"
+        if ([string]::IsNullOrEmpty($inputString)) {
+            break
+        }
+
+        if ($inputString.Length -gt $maxString.Length) {
+            $maxString = $inputString
+        }
+    }
+
+    return $maxString
+}
+
 }
 function q4($filename,$start) {
     <# Return the line of text from the file given by the `$filename
@@ -118,11 +157,25 @@ function q4($filename,$start) {
   If no line in the file begins with the `$start text, return
   $null."
 #>
+function q4($filename, $start) {
+    $line = Get-Content $filename | Where-Object { $_.StartsWith($start) }
+
+    if ($line) {
+        return $line
+    } else {
+        return $null
+    }
+}
+
 }
 function q5($path) {
     <# Return the services in Stopped status sorted
        descending by their Name
 #>
+function q5($path) {
+    Get-Service | Where-Object { $_.Status -eq 'Stopped' } | Sort-Object -Property Name -Descending
+}
+
 }
 function q6($filename) {
     <# Write each of the elements provided on the pipeline to the
@@ -133,11 +186,19 @@ function q7 {
 <# Return the list of all startup apps that have an
        AppId 'not ending in }'.
     #>
+    Get-AppxPackage | Where-Object { $_.InstallLocation -notmatch "}" }
+}
+
 }
 function q8($arr) {
     <# Combine the provided `$arr argument into a string separated
        by a '-' between each element and return
        this string #>
+       function q8($arr) {
+    $combinedString = $arr -join '-'
+    return $combinedString
+}
+
 }
 function q9($addr) {
 <# Return `$true when the given argument is an IPv4 address
@@ -146,6 +207,13 @@ function q9($addr) {
        must fall within the range '240.0.0.0' to
        '254.255.255.255'.
 #>
+function q9($addr) {
+    $ip = [System.Net.IPAddress]$addr
+
+    return ($ip.Address -ge [System.Net.IPAddress]"240.0.0.0".Address -and
+            $ip.Address -le [System.Net.IPAddress]"254.255.255.255".Address)
+}
+
 }
 function q10 () {
     <# Return the current date/time as a string formatted in
@@ -155,6 +223,11 @@ function q10 () {
        2 seconds after 3 PM on February 8th, 2018, the return
        value should be:  20180208@15:05:02
     #>
+    function q10 {
+    $currentDateTime = Get-Date -Format "yyyyMMdd@HH:mm:ss"
+    return $currentDateTime
+}
+
 
 }
 
