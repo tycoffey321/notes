@@ -1,7 +1,8 @@
 http://10.50.22.197:8000     challenges
 
 10.50.23.222
-
+xfreerdp /u:student /v:10.50.23.222 -dynamic-resolution +glyph-cache +clipboard
 x = 12
+TYCO-M-24-503
 
 
