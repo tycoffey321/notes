@@ -8,5 +8,12 @@ TYCO-M-24-503
 
 
 
-get-wmiobject win32_useraccount | select name,sid
+get-wmiobject win32_useraccount | select name,sid - correlates usernames to SID's
 
+Get-Content .\nothing_here -stream hidden - shows content of hidden data stream text document
+more < kids:hidden.txt - CLI version of above command
+
+
+
+
+dir /s /b C:\*something* - searches for something in the c:\ recursively
