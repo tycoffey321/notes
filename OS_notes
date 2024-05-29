@@ -6,3 +6,7 @@ x = 12
 TYCO-M-24-503
 
 
+
+
+get-wmiobject win32_useraccount | select name,sid
+
