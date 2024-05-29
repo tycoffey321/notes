@@ -6,11 +6,15 @@ x = 12
 TYCO-M-24-503
 
 
-
+gci -force - shows hidden directories and files in powershell
 
 get-wmiobject win32_useraccount | select name,sid - correlates usernames to SID's
 
+
+Get-Item reminder.txt -Stream * - shows data dreams of a given text document
 Get-Content .\nothing_here -stream hidden - shows content of hidden data stream text document
+
+dir /R - shows data streams
 more < kids:hidden.txt - CLI version of above command
 
 
