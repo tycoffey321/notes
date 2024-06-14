@@ -23,3 +23,9 @@ more < kids:hidden.txt - CLI version of above command
 dir /s /b C:\*something* - searches for something in the c:\ recursively
 
 get-aduser -properties '*' -filter 'name -like "krbtgt"' - gives all properties for the account with name krbtgt
+
+
+test ips 
+
+windows 10.50.20.223 
+linux 10.50.30.117
