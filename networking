@@ -310,6 +310,7 @@ done
 
 banner grabbing (port validation)
 nc <target ip> <target port>
+-u to specify udp 
 
 wget -r http://172.16.82.106
 wget -r ftp://172.16.82.106
