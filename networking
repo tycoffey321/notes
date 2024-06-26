@@ -386,7 +386,7 @@ reverse shells
 
 xxd -r <filename> <decoded filename>
 
-###########################TUNNELS####################################
+###################################################################################################### TUNNELS ##############################################################################################################################
 need loopback and port specified by tunnel
 
 ssh student@<ip address> -L 1111:127.0.0.1:22 -NT
@@ -394,7 +394,6 @@ ssh student@<ip address> -L 1111:127.0.0.1:22 -NT
 
 scp -P 1111 student@127.0.0.1:secretstuff.txt /home/student
   goes through tunnel created above and copies secretstuff.txt and puts it in /home/student on local box
-#########################################################################################################
 
 ssh student@172.16.82.106 -D 9050 -NT
   creates a dynamic port forward to target device
@@ -405,6 +404,86 @@ proxychains scp student@127.0.0.1:secretstuff.txt .
 
 proxychains scp secretstuff.txt student@127.0.0.1
   uploads file to remote host through tunnel
+
+
+ssh 172.16.82.106 -L 1200:192.168.0.1:80
+  opens port on local machine that uses the tunnel (1200)
+  ######### second ip is the ip you dont have access to but the ip that you're ssh'ing to does have access to it #####################
+
+-L creates port on client mapped to an ip:port via the server
+-D creates port on the client and sets up a SOCKS4 proxy tunnel
+-NT - no interactive terminal (makes it so you cant do anything on terminal session after creating terminal)
+-R creates the port on the server (reverse)
+
+dynamic tunnels
+  -D 9050
+example:
+  ssh student@172.16.1.15 -L 2222:172.16.40.10:80
+  ssh student@127.0.0.1 -p 2222 -D 9050
+
+
+
+ssh student@172.16.1.115 -L 2222:172.16.40.10:22
+ssh student@localhost -p 2222 -L 3333:172.16.40.106:23
+
+telnet 172.16.40.106 3333
+
+double tunnel to gain access to final ip on specified port
+
+proxychains used after making tunnel
+  proxychains nmap 172.16.1.0/24
+    will send it through redirector to other networks 
+  runs commands as if you are on redirector 
+  proxychains wget -r http://<ip address>
+
+ssh student@172.16.115 -L 2222:172.16.40.10:22
+ssh student@localhost -p 2222 -D 9050
+
+
+ssh student@10.10.0.40 -R 4422:localhost:22
+ssh student@localhost -p 4422
+  opens port 4422 on the 10.10.0.40 that targets 22
+
+########################################### TUNNEL FLOW ###################################################
+make local port forward
+  ssh student@<own ip> -L <p1>:<ip1>:22    
+                                                                                    <p1> = port to hit <ip1>
+set dynamic to port forward                                                         <p2> = port to hit <ip2>
+  ssh student@<own ip> -p <p1> -D 9050 -NT                                          <ip1> = first box you want to get to
+                                                                                    <ip2> = box discovered from <ip1>
+proxychains in dynamic                                                              
+
+scan/recon
+  nmap / scan script
+
+take down dynamic
+
+make new local port forward to discovered hosts
+  ssh student@<own ip> -p <p1> -L <p2>:<ip2>:22
+
+set dynamic
+
+scan/recon
+
+so on and so on (make sure to replace correct port in -p to hit correct tunnel)
+############################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
