@@ -468,9 +468,15 @@ scan/recon
 so on and so on (make sure to replace correct port in -p to hit correct tunnel)
 ############################################################################################################
 
+ Entry Float IP: 10.50.24.91
 
+    Your Network Number is N (Given by Instructor)
 
+    Credentials: net{N}_studentX:passwordX
 
+    X is your student number
+T3 (Atropia) Float IP address is - 10.50.20.51
+T4 (Pineland) Float IP address is - 10.50.24.9 
 
 
 
