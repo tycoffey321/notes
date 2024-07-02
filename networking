@@ -599,6 +599,60 @@ iptables -t mangle -A POSTROUTING -o eth0 -j TTL --ttl-set 128
 
 
 
+########################################################## SNORT ###############################################################################
+
+/etc/snort
+  installation directory
+
+/etc/snort.conf
+  configuration file
+
+/etc/snort/rules
+  rules directory
+
+name.rules
+  snort rule files
+
+/var/log/snort
+  snort log directory
+
+
+sudo snort -D -c /path/rules] -l [/path/log-dir]
+  starts snort as a daemon
+
+ps -ef |grep snort
+  checks to see if its running as daemon
+
+sudo snort -r [/path/pcap] -c [/path/rules]
+
+ sudo snort -c /etc/snort/rules/cows.rules -r ids.pcap
+
+alert icmp any any -> 10.3.0.0/24 any (msg:"DMZ Ping"; itype:8; icode:0; sid:1000002;)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
