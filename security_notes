@@ -1,7 +1,7 @@
 RUBY PING SWEEP
     for i in {1..254}; do (ping -c 1 192.168.65.$i | grep "bytes from" &) ; done
 
-
+xfreerdp /u:student /v:10.50.33.177 -dynamic-resolution +glyph-cache +clipboard
 Stack Number	Username	    Password	        jump
 4 	            TYCO-503-M 	    YdAHv92QJMCMNcE 	10.50.41.0
 
