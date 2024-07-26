@@ -21,7 +21,7 @@ ssh -S /tmp/t1 dummy -O forward -L5555:192.168.50.100:22
 ssh -MS /tmp/t2 credentials@127.0.0.1 -p 5555
 -------------------------------------------------------------------------------------------------------------------------
 
-nmap --=http-enum.nse <ip address>
+nmap --script=http-enum.nse <ip address>			FIND HIDDEN DIRECTORIES ON THE WEB SERVER
     if you see robots.txt, go to it in url
 <ip address>/robots.txt
 
