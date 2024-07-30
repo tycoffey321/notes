@@ -160,6 +160,7 @@ GET METHOD
 
 
 ------------------------------------------------------------------------------------------- GDB (LINUX) -----------------------------------------------------------------------------------------------------
+scp back to linops
 disass <function> dissasemble portion of the program
 info <> supply info for specific stack areas
 x/256c $<REGISTER> read characters from specific register
@@ -168,17 +169,6 @@ break <address> establish a break point
 
 gdb <./executable>
 	get executable into debugger
-
-run <<<$(echo "hello")
-	redirects hello into 
-
-pdisass main
-	disassembles main function
-
-find next function
-pdisass it
-	pdisass <hex next to function name>
-find function thats red (has vulerability)
 
 run <<<$(python buffer.py)
 wiremask.eu
@@ -191,15 +181,18 @@ add eip variable set to 4 new characters ("BBBB")
 run it
 
 back out of gdb
+
+copy over to machine to hack nice
+
 run this
 	env - gdb ./func
 show env
 	unset all of them
-unset env COLUMNS
-unset env LINES
+	unset env COLUMNS
+	unset env LINES
 run
-put in a string thats way too long
-	segmentation fault
+
+copy paste made script over
 
 info proc map
 	gets map
@@ -231,6 +224,7 @@ quit out of gdb
 ---------------------------------------------------------------------WINDOWS EXPLOITATION---------------------------------------------------------------------------------------------------------------------
 mostly same as linux steps
 
+immunity debugger
 !mona modules into white box - finds exploitable dll's
 	go to table to find dll you want
 !mona jmp -r esp -m "essfunc.dll" into white bar
@@ -383,11 +377,42 @@ nice /bin.sh
 
 
 
+ ----------------------------------------------------------------------------------------------------------------- REVIEW FOR TEST ----------------------------------------------------------------------------------------------------------------------------
+
+RECON
+	nmap --script=-http-enum <ip address>
+	ruby ping sweep
+	cat /etc/hosts
+	cat /etc/passwd
+	sudo -l
+	arp -a
+	ps -elf
+
+WEB EXPLOITATION
+	sql injection (OR 1=1 into getting the tables)
+	directory traversal (file to search for)
+	command injection (; <command>)
+	malicous file upload (if you dont know where its going this is useless)
+
+REVERSE ENGINEERING
 
 
+EXPLOIT DEVELOPMENT
 
 
+POST EX
 
+	check remote logging (check rsyslog.conf)
+	check security programs (clam, something hunter)
+	gtfobins to exploit sudo permissions command
+	
+
+WINDOWS EXPLOITATION
+
+	DLL hijacking (replacing the dll with something malicious)
+	exe replacement
+	auditpol (check logging policies)
+	
 
 
 
