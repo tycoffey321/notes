@@ -147,43 +147,30 @@
     A: ISR - Cyberspace, C-S&R
     Q: _____ is the practice of sending targeted emails with dangerous attachments to the target organization.
     A: Spear Phishing
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Q: OPELINT is concerned with the technical aspects of foreign non-communication emitters
+    A: False
+    Q: What Products do CPTs provide to local defenders?
+    A: Network maps, risk mitigation plans, and mission defense plan
+    Q: ___ Invloves the collecting and processing foreign communications passed by radio, wire, or oteher electromagnetic means.
+    A: COMINT
+    Q: ___ is a category of intelligence derived from information collected and provided by human sources.
+    A: HUMINT
+    Q: Radar Imagery is a subcategory of ___.
+    A: GEOINT
+    Q: Which organization provides CI/HUMINT support to Cyberspace Operations?
+    A: DIA
+    Q: DODIN CPTs may overlap with CCMD CPTs and Service CPTs.
+    A: True
+    Q: How many intelligence disciplines are there?
+    A: 7
+    Q: DCO operations are ___ and ___.
+    A: Threat specific and network agnostic
+    Q: The 3 subcategories of SIGINT are ___.
+    A: COMINT ELINT FISINT
+    Q: ___ is a DCO mission where actions are taken external to the defended network.
+    A: DCO-RA
+    Q: Purpose of DCO is to halt adversary offensive initiative, and sutain or regain friendly initiative.
+    A: True
+    Q: DCO IDM is done by the CSSP
+    A: False
 
